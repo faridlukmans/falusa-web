@@ -44,7 +44,7 @@ Remote: `https://github.com/faridlukmans/falusa-web.git`
 
 `.cpanel.yml` akan menyalin `index.html` dan `assets/` ke `public_html`.
 
-> Jika deploy gagal karena `$HOME` tidak terbaca, ganti baris pertama `.cpanel.yml` menjadi:
+> Jika deploy gagal karena path tidak terbaca, ganti baris pertama `.cpanel.yml` menjadi:
 > `export DEPLOYPATH="/home/<USER_CPANEL>/public_html"`, commit, push, lalu pull + deploy lagi.
 
 ### Deploy berikutnya
