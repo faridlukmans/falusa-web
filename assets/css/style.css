@@ -761,13 +761,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Reveal ---------- */
 
-.reveal {
+.reveal { opacity: 1; transform: none; }
+
+.js .reveal {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
-.reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
 
 /* ---------- Responsive ---------- */
 

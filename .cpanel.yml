@@ -3,5 +3,6 @@ deployment:
   tasks:
     - export DEPLOYPATH="${HOME:-/home/$(whoami)}/public_html"
     - /bin/cp -f index.html "$DEPLOYPATH/index.html"
+    - /bin/cp -f bms.html "$DEPLOYPATH/bms.html"
     - /bin/mkdir -p "$DEPLOYPATH/assets"
     - /bin/cp -Rf assets/. "$DEPLOYPATH/assets/"

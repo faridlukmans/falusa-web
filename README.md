@@ -7,10 +7,14 @@ Company profile / landing page statis. Tanpa build step, tanpa dependency, tanpa
 ```text
 site/
 ├─ index.html
+├─ bms.html
 ├─ assets/
 │  ├─ css/style.css
+│  ├─ css/bms.css
 │  ├─ js/main.js
-│  └─ img/favicon.svg
+│  └─ img/
+│     ├─ favicon.svg
+│     └─ bms/*.webp
 ├─ .cpanel.yml        # task deploy cPanel Git Version Control
 ├─ .gitignore
 └─ README.md

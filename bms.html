@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMS — Returnable Box Management System | falusa</title>
+  <meta name="description" content="Kontrol returnable box dari pembelian, pengiriman, pengembalian, inspeksi, sampai rekonsiliasi customer dan akuntansi. Implementasi 4–6 minggu.">
+  <meta name="author" content="falusa">
+  <meta name="theme-color" content="#070A12">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="canonical" href="https://falusa.web.id/bms.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/bms.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="falusa">
+  <meta property="og:title" content="BMS — Returnable Box Management System">
+  <meta property="og:description" content="Satu sistem untuk seluruh siklus returnable box: pengiriman, pengembalian, inspeksi, rekonsiliasi, deposit, dan audit.">
+  <meta property="og:url" content="https://falusa.web.id/bms.html">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="falusa — beranda">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="10" fill="url(#bg2)"/>
+            <path d="M11 24V15.5C11 11.91 13.91 9 17.5 9H21" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <path d="M13.5 16H20" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="22" cy="23" r="2" fill="#7DD3FC"/>
+            <defs>
+              <linearGradient id="bg2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#38BDF8"/><stop offset="1" stop-color="#8B5CF6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="brand-text">falusa<span class="brand-dot">.</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+        <a href="index.html#produk">Produk</a>
+        <a href="bms.html" aria-current="page">BMS</a>
+        <a href="index.html#layanan">Layanan</a>
+        <a href="index.html#tentang">Tentang</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Ganti tema terang/gelap" title="Ganti tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3c.34 0 .67.02 1 .05a7 7 0 0 0 8.74 8.74c.03.33.05.66.05 1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn-sm btn-primary nav-cta" href="#kontak">Minta Audit</a>
+        <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="orb orb-a"></div>
+        <div class="orb orb-b"></div>
+        <div class="grid-fade"></div>
+      </div>
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> BMS</p>
+        <p class="eyebrow reveal"><span class="pulse-dot"></span> Solusi unggulan · Returnable Box</p>
+        <h1 class="reveal">Satu box, satu identitas, satu riwayat yang bisa diaudit.</h1>
+        <p class="lead reveal">
+          BMS mengontrol returnable box dan pallet plastik dari pembelian, pengiriman, pengembalian,
+          inspeksi, perbaikan, sampai rekonsiliasi customer, deposit, dan akuntansi — dalam satu sistem.
+        </p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-primary" href="mailto:faridlukmans@gmail.com?subject=Audit%20BMS%20Returnable%20Box">
+            Minta Audit Gratis 30 Menit
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#harga">Lihat Paket</a>
+        </div>
+        <div class="trust-strip reveal">
+          <span>Demo data tersedia</span>
+          <span>92 skenario UAT internal</span>
+          <span>RBAC + maker–checker</span>
+          <span>Dukungan kawasan berikat</span>
+        </div>
+        <figure class="hero-shot reveal">
+          <img src="assets/img/bms/01-dashboard.webp" alt="Dashboard eksekutif BMS menampilkan posisi box, utilisasi, keterlambatan, dan performa pallet" width="1440" height="900" loading="eager">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Masalah</p>
+          <h2>Kalau box hilang, yang hilang bukan cuma box.</h2>
+          <p class="section-sub">Waktu tim, akurasi stok, deposit customer, dan temuan audit ikut terdampak.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card reveal"><span class="pnum">01</span><h3>Box tidak kembali</h3><p>Tidak jelas siapa memegang box, di plant mana, dan sejak kapan.</p></article>
+          <article class="problem-card reveal"><span class="pnum">02</span><h3>Rekonsiliasi manual</h3><p>Excel tersebar, saldo customer dihitung ulang setiap bulan.</p></article>
+          <article class="problem-card reveal"><span class="pnum">03</span><h3>Deposit tidak terkontrol</h3><p>Nilai deposit dan cost recovery sulit dicocokkan dengan fisik.</p></article>
+          <article class="problem-card reveal"><span class="pnum">04</span><h3>Stok fisik tidak cocok</h3><p>Stock opname menemukan selisih yang tidak bisa ditelusuri.</p></article>
+          <article class="problem-card reveal"><span class="pnum">05</span><h3>Audit pabean</h3><p>Kawasan berikat butuh jejak dokumen dan pergerakan yang lengkap.</p></article>
+          <article class="problem-card reveal"><span class="pnum">06</span><h3>Banyak plant</h3><p>Data terpisah per lokasi, laporan konsolidasi terlambat.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Kapabilitas</p>
+          <h2>Dari transaksi harian sampai audit tahunan.</h2>
+          <p class="section-sub">Bukan sekadar pencatatan — status box hanya berubah lewat dokumen yang diposting.</p>
+        </div>
+        <div class="bms-feature-grid">
+          <article class="bms-feature reveal"><span class="ficon">01</span><h3>Identitas &amp; siklus box</h3><p>Registrasi, label, status, lokasi, dan riwayat per box.</p></article>
+          <article class="bms-feature reveal"><span class="ficon">02</span><h3>Outbound &amp; return</h3><p>Pengiriman, pengembalian, transfer antar plant, return request.</p></article>
+          <article class="bms-feature reveal"><span class="ficon">03</span><h3>Inspeksi &amp; perbaikan</h3><p>Kondisi box, perbaikan, scrap, dan box hilang.</p></article>
+          <article class="bms-feature reveal"><span class="ficon">04</span><h3>Rekonsiliasi customer</h3><p>Statement bulanan, konfirmasi customer, klaim, dan aging.</p></article>
+          <article class="bms-feature reveal"><span class="ficon">05</span><h3>Deposit &amp; cost recovery</h3><p>Deposit sebagai liability, recovery lewat harga, BEP.</p></article>
+          <article class="bms-feature reveal"><span class="ficon">06</span><h3>Akuntansi</h3><p>Jurnal otomatis, mapping GL, penyusutan, tutup periode.</p></article>
+          <article class="bms-feature reveal"><span class="ficon">07</span><h3>Multi-plant &amp; RBAC</h3><p>Scope per plant, maker–checker, audit trail.</p></article>
+          <article class="bms-feature reveal"><span class="ficon">08</span><h3>Laporan &amp; audit pack</h3><p>Excel/PDF, laporan pabean, paket audit tahunan.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Tampilan</p>
+          <h2>Terlihat seperti apa yang dipakai tim setiap hari.</h2>
+          <p class="section-sub">Semua screenshot menggunakan data demo — bukan data client.</p>
+        </div>
+        <div class="shot-grid">
+          <figure class="shot-card reveal"><img src="assets/img/bms/03-boxes.webp" alt="Daftar box dengan status, kondisi, lokasi, customer, dan siklus" width="1440" height="900" loading="lazy"><figcaption>Daftar box — status, kondisi, lokasi, customer, siklus.</figcaption></figure>
+          <figure class="shot-card reveal"><img src="assets/img/bms/04-documents.webp" alt="Dokumen transaksi BMS: pengiriman, pengembalian, inspeksi, perbaikan" width="1440" height="900" loading="lazy"><figcaption>Dokumen transaksi — OUT, RET, INS, REP, TRF.</figcaption></figure>
+          <figure class="shot-card reveal"><img src="assets/img/bms/05-customers.webp" alt="Customer 360 menampilkan posisi box, keterlambatan, dugaan hilang, nilai buku, deposit" width="1440" height="900" loading="lazy"><figcaption>Customer 360° — posisi box, keterlambatan, deposit.</figcaption></figure>
+          <figure class="shot-card reveal"><img src="assets/img/bms/02-inventory.webp" alt="Dashboard inventory BMS" width="1440" height="900" loading="lazy"><figcaption>Dashboard inventory — saldo dan pergerakan.</figcaption></figure>
+          <figure class="shot-card reveal"><img src="assets/img/bms/08-reports.webp" alt="Daftar laporan BMS: inventory, customer, pergerakan, akuntansi, analitik" width="1440" height="900" loading="lazy"><figcaption>Laporan — inventory, customer, akuntansi, analitik.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="harga">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Paket</p>
+          <h2>Mulai dari audit, lanjut sesuai kebutuhan.</h2>
+          <p class="section-sub">Harga final ditentukan setelah audit scope. Tidak ada biaya tersembunyi.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card reveal">
+            <h3>Audit</h3>
+            <p class="price">Rp 3–5 jt</p>
+            <p>3–5 hari. Laporan temuan + roadmap.</p>
+            <ul><li>Pemetaan proses</li><li>Inventaris master</li><li>Gap analysis</li><li>Dipotong jika lanjut</li></ul>
+            <div class="btn-wrap"><a class="btn btn-ghost btn-sm" href="#kontak">Mulai audit</a></div>
+          </article>
+          <article class="price-card reveal">
+            <h3>Essential</h3>
+            <p class="price">Rp 35–45 jt</p>
+            <p>1 plant, modul inti, migrasi, training.</p>
+            <ul><li>Instalasi &amp; konfigurasi</li><li>Migrasi saldo awal</li><li>UAT + training</li><li>Support 30 hari</li></ul>
+            <div class="btn-wrap"><a class="btn btn-ghost btn-sm" href="#kontak">Diskusikan</a></div>
+          </article>
+          <article class="price-card featured reveal">
+            <h3>Professional</h3>
+            <p class="price">Rp 45–60 jt</p>
+            <p>Multi-plant, portal customer, integrasi akuntansi.</p>
+            <ul><li>Semua Essential</li><li>Multi-plant scope</li><li>Portal customer</li><li>Mapping GL &amp; jurnal</li></ul>
+            <div class="btn-wrap"><a class="btn btn-primary btn-sm" href="#kontak">Paling relevan</a></div>
+          </article>
+          <article class="price-card reveal">
+            <h3>Enterprise</h3>
+            <p class="price">Rp 60–100 jt</p>
+            <p>Multi-entitas, ERP, laporan custom, SLA.</p>
+            <ul><li>Semua Professional</li><li>Integrasi ERP/API</li><li>Laporan custom</li><li>SLA &amp; pendampingan</li></ul>
+            <div class="btn-wrap"><a class="btn btn-ghost btn-sm" href="#kontak">Buat penawaran</a></div>
+          </article>
+        </div>
+        <div class="note-box reveal">
+          <strong>Maintenance:</strong> Rp 4–6 juta/bulan — bugfix, backup, monitoring, dan dukungan operasional.
+          Termin pembayaran 50% DP, 40% setelah UAT, 10% setelah go-live.
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Proses</p>
+          <h2>Empat fase, satu hasil yang bisa dipakai.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-step reveal"><span class="tnum">01</span><h3>Audit</h3><p>Proses, data, gap, dan estimasi final.</p></article>
+          <article class="timeline-step reveal"><span class="tnum">02</span><h3>Setup</h3><p>Instalasi, konfigurasi plant, customer, kontrak.</p></article>
+          <article class="timeline-step reveal"><span class="tnum">03</span><h3>Migrasi &amp; UAT</h3><p>Saldo awal, pengujian, dan training tim.</p></article>
+          <article class="timeline-step reveal"><span class="tnum">04</span><h3>Go-live</h3><p>Pendampingan 30 hari + serah terima.</p></article>
+        </div>
+        <div class="note-box reveal">Total ± 4–6 minggu setelah data dan PIC client siap.</div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Pertanyaan yang biasanya muncul.</h2>
+        </div>
+        <div class="faq reveal">
+          <details><summary>Apakah bisa dipasang di server kami sendiri?</summary><p>Bisa. BMS berbasis PHP 8.1+ dan MySQL 8/MariaDB 10.4+, dapat dijalankan di server on-premise, VPS, atau hosting internal.</p></details>
+          <details><summary>Apakah data aman?</summary><p>Data tetap di server Anda. BMS memakai RBAC, maker–checker, audit trail, dan status box yang hanya berubah lewat dokumen yang diposting.</p></details>
+          <details><summary>Berapa lama implementasinya?</summary><p>Rata-rata 4–6 minggu setelah audit dan data awal siap. Modul tambahan atau integrasi ERP dihitung terpisah.</p></details>
+          <details><summary>Apakah bisa integrasi ERP?</summary><p>Bisa melalui API/outbox untuk pengiriman dan jurnal. Lingkup integrasi ditentukan setelah audit karena bergantung pada sistem ERP yang dipakai.</p></details>
+          <details><summary>Apakah mendukung RFID?</summary><p>Ya. BMS memiliki modul scan dan integrasi RFID. Perangkat keras (tag/reader) tidak termasuk dalam paket implementasi.</p></details>
+          <details><summary>Bisa lihat demo dulu?</summary><p>Bisa. Demo online memakai data dummy, bukan data client. Jadwalkan audit gratis 30 menit untuk melihat alur yang relevan dengan proses Anda.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cta" id="kontak">
+      <div class="container cta-box reveal">
+        <div class="cta-copy">
+          <p class="eyebrow">Mulai</p>
+          <h2>Berapa box yang hilang bulan ini?</h2>
+          <p>Ceritakan kondisi saat ini. Saya akan bantu petakan apakah BMS cocok, tanpa biaya di tahap awal.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="mailto:faridlukmans@gmail.com?subject=Audit%20BMS%20Returnable%20Box">Minta Audit Gratis</a>
+          <a class="btn btn-ghost" href="index.html#kontak">Kontak Lain</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <span class="brand-text">falusa<span class="brand-dot">.</span></span>
+        <p>Company profile &amp; produk digital. BMS adalah solusi unggulan untuk operasional returnable box.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html#produk">Produk</a>
+        <a href="bms.html">BMS</a>
+        <a href="index.html#layanan">Layanan</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+      <p class="footer-copy">© <span id="year">2026</span> falusa.web.id — semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
