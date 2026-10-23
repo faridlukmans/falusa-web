@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# arsip deploy lokal
+*.zip
+*.tar.gz
+
+# log
+*.log
+
+# file environment (jangan pernah commit)
+.env
+.env.*
+!.env.example

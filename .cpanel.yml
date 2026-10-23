@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH="$HOME/public_html"
+    - /bin/cp -f index.html "$DEPLOYPATH/index.html"
+    - /bin/mkdir -p "$DEPLOYPATH/assets"
+    - /bin/cp -Rf assets/. "$DEPLOYPATH/assets/"
