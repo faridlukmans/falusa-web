@@ -37,6 +37,17 @@
         <span class="hud-k">Terbaik</span>
         <strong id="hudBest">1</strong>
       </div>
+
+      <button class="hud-chip hud-sound" id="soundBtn" type="button" aria-pressed="true" aria-label="Matikan suara">
+        <svg class="snd-on" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <path d="M15.6 8.6a4.8 4.8 0 0 1 0 6.8M18.4 6a8.6 8.6 0 0 1 0 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        <svg class="snd-off" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <path d="M16 9.5l4 5M20 9.5l-4 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>
 
     <p class="hud-hint" id="hudHint">WASD / panah untuk bergerak · Spasi untuk memotong, memberi kayu, dan menyerang</p>
@@ -44,7 +55,7 @@
     <!-- Bars -->
     <div class="hud-bars">
       <div class="bar-row">
-        <span class="bar-label">Api</span>
+        <span class="bar-label">Api <em class="bar-lvl" id="valFireLvl">Lv1</em></span>
         <div class="bar"><i id="barFuel" class="bar-fill bar-fuel" style="width:72%"></i></div>
         <span class="bar-val" id="valFuel">72%</span>
       </div>
@@ -85,6 +96,7 @@
         <ul class="panel-list">
           <li><b>Gerak</b> WASD atau tombol panah</li>
           <li><b>Aksi</b> Spasi — potong pohon, beri kayu, serang serigala</li>
+          <li><b>Api Lv1</b> penuhi api sampai 100% untuk naik level. Tiap level, kayu yang didapat ×2 (maksimal Lv5)</li>
           <li><b>Target</b> bertahan 10 malam</li>
         </ul>
         <button class="panel-btn" id="startBtn" type="button">Mulai Bermain</button>

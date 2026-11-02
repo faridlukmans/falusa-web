@@ -97,6 +97,20 @@ body { touch-action: none; }
 
 .hud-best { margin-left: auto; }
 
+.hud-sound {
+  cursor: pointer;
+  padding: 6px 10px;
+  color: var(--ember);
+  font-family: inherit;
+}
+
+.hud-sound svg { width: 18px; height: 18px; display: block; }
+.hud-sound .snd-off { display: none; }
+.hud-sound[aria-pressed="false"] { color: var(--muted); border-color: var(--border); }
+.hud-sound[aria-pressed="false"] .snd-on { display: none; }
+.hud-sound[aria-pressed="false"] .snd-off { display: block; }
+.hud-sound:hover { border-color: var(--ember); color: var(--ember); }
+
 .hud-k {
   font-size: 0.66rem;
   font-weight: 700;
@@ -167,6 +181,18 @@ body { touch-action: none; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
+  white-space: nowrap;
+}
+
+.bar-lvl {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: rgba(255, 138, 61, 0.18);
+  color: var(--ember);
+  font-style: normal;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
 }
 
 .bar {

@@ -41,6 +41,13 @@ site/
 - `play.html` — prototipe playable: canvas 2D, tanpa library, tanpa server.
   Kontrol: WASD/panah, Spasi untuk memotong/beri kayu/serang; tombol sentuh muncul di mobile.
   Rekor malam disimpan di `localStorage` (`campfire-best`).
+- Karakter 8-bit (sprite 12×14) membawa kapak Lv1; efek suara prosedural (Web Audio,
+  tanpa file): tebasan kapak, pohon tumbang, kayu masuk api, naik level, dan suara kena serangan.
+- Api punya level 1–5: penuhi hingga 100% untuk naik level; tiap level kayu yang didapat ×2
+  (Lv1 ×1, Lv2 ×2, Lv3 ×4, Lv4 ×8, Lv5 ×16) dan kapasitas kayu ikut naik. Api level tinggi
+  membakar bahan bakar lebih cepat (×1,4 per level).
+- Halaman `index.html` punya tombol "Suara api" (ambient crackle dari Web Audio, default mati
+  karena kebijakan autoplay). Game punya tombol mute tersendiri (`campfire-muted`).
 - Belum ada wallet, token, maupun backend. Semua progres hanya di browser.
 
 Pratinjau lokal: `http://localhost:8080/campfire/` dan `.../campfire/play.html`.

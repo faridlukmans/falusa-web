@@ -51,6 +51,219 @@
   }
 
   /* ---------------------------------------------------------------
+     Sprite 8-bit (gaya Stardew Valley): 12x14 piksel
+     --------------------------------------------------------------- */
+
+  var PAL = {
+    h: '#5a3a22',
+    H: '#3a2414',
+    s: '#f2c9a0',
+    e: '#241610',
+    b: '#3f6fd1',
+    B: '#2b4c96',
+    p: '#2f3f66',
+    k: '#4a2f1a'
+  };
+
+  var SPRITE = {
+    down: [
+      '...hhhhhh...',
+      '..hhhhhhhh..',
+      '.hhhhhhhhhh.',
+      '.hhsssssshh.',
+      '.hssssssssh.',
+      '..sesssses..',
+      '..ssssssss..',
+      '...bbbbbb...',
+      '..bbbbbbbb..',
+      '..bBbbbbBb..',
+      '..bbbbbbbb..',
+      '..pppppppp..',
+      '..ppp..ppp..',
+      '..kkk..kkk..'
+    ],
+    up: [
+      '...hhhhhh...',
+      '..hhhhhhhh..',
+      '.hhhhhhhhhh.',
+      '.hhhhhhhhhh.',
+      '.hhhhhhhhhh.',
+      '..hhhhhhhh..',
+      '..hhhhhhhh..',
+      '...bbbbbb...',
+      '..bbbbbbbb..',
+      '..bBbbbbBb..',
+      '..bbbbbbbb..',
+      '..pppppppp..',
+      '..ppp..ppp..',
+      '..kkk..kkk..'
+    ],
+    side: [
+      '...hhhhhh...',
+      '..hhhhhhhh..',
+      '.hhhhhhhhhh.',
+      '.hhhsssss...',
+      '.hhhssess...',
+      '..hhsssss...',
+      '...sssss....',
+      '...bbbbb....',
+      '..bbbbbbb...',
+      '..bbbbbbb...',
+      '..bbbbbbb...',
+      '..ppppppp...',
+      '..ppp.ppp...',
+      '..kkk.kkk...'
+    ]
+  };
+
+  var SPR_W = 12;
+  var SPR_H = 14;
+  var SPR_SCALE = 3;
+
+  /* ---------------------------------------------------------------
+     Audio prosedural (tanpa file) — dipicu aksi pemain
+     --------------------------------------------------------------- */
+
+  var audio = { ctx: null, master: null, noise: null, muted: false };
+  var AUDIO_KEY = 'campfire-muted';
+
+  function audioSupported() {
+    return !!(window.AudioContext || window.webkitAudioContext);
+  }
+
+  function audioInit() {
+    if (audio.ctx || !audioSupported()) return;
+
+    var AC = window.AudioContext || window.webkitAudioContext;
+    audio.ctx = new AC();
+    audio.master = audio.ctx.createGain();
+    audio.master.gain.value = 0.5;
+    audio.master.connect(audio.ctx.destination);
+
+    var len = Math.floor(audio.ctx.sampleRate * 1.2);
+    var buf = audio.ctx.createBuffer(1, len, audio.ctx.sampleRate);
+    var data = buf.getChannelData(0);
+    for (var i = 0; i < len; i += 1) data[i] = Math.random() * 2 - 1;
+    audio.noise = buf;
+
+    try { audio.muted = localStorage.getItem(AUDIO_KEY) === '1'; } catch (e) { /* ignore */ }
+    updateSoundBtn();
+  }
+
+  function audioOk() {
+    return !!audio.ctx && !audio.muted;
+  }
+
+  function noiseBurst(peak, freq, q, start, dur, type) {
+    var c = audio.ctx;
+    var src = c.createBufferSource();
+    src.buffer = audio.noise;
+
+    var filter = c.createBiquadFilter();
+    filter.type = type || 'bandpass';
+    filter.frequency.value = freq;
+    filter.Q.value = q;
+
+    var g = c.createGain();
+    g.gain.setValueAtTime(0.0001, start);
+    g.gain.exponentialRampToValueAtTime(peak, start + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+
+    src.connect(filter);
+    filter.connect(g);
+    g.connect(audio.master);
+    src.start(start, Math.random() * 0.4, dur);
+
+    src.onended = function () {
+      try { src.disconnect(); filter.disconnect(); g.disconnect(); } catch (e) { /* ignore */ }
+    };
+  }
+
+  function tone(freqFrom, freqTo, peak, start, dur, type) {
+    var c = audio.ctx;
+    var osc = c.createOscillator();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freqFrom, start);
+    osc.frequency.exponentialRampToValueAtTime(freqTo, start + dur);
+
+    var g = c.createGain();
+    g.gain.setValueAtTime(0.0001, start);
+    g.gain.exponentialRampToValueAtTime(peak, start + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+
+    osc.connect(g);
+    g.connect(audio.master);
+    osc.start(start);
+    osc.stop(start + dur + 0.05);
+
+    osc.onended = function () {
+      try { osc.disconnect(); g.disconnect(); } catch (e) { /* ignore */ }
+    };
+  }
+
+  function sfxChop() {
+    if (!audioOk()) return;
+    var t = audio.ctx.currentTime;
+    tone(155 + Math.random() * 40, 58, 0.45, t, 0.14, 'triangle');
+    noiseBurst(0.2, 850 + Math.random() * 500, 1.3, t, 0.07);
+  }
+
+  function sfxFall() {
+    if (!audioOk()) return;
+    var t = audio.ctx.currentTime;
+
+    /* derit kayu memanjang */
+    var c = audio.ctx;
+    var src = c.createBufferSource();
+    src.buffer = audio.noise;
+
+    var bp = c.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.Q.value = 6;
+    bp.frequency.setValueAtTime(620, t);
+    bp.frequency.exponentialRampToValueAtTime(140, t + 0.5);
+
+    var g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.28, t + 0.06);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.55);
+
+    src.connect(bp);
+    bp.connect(g);
+    g.connect(audio.master);
+    src.start(t, Math.random() * 0.3, 0.6);
+
+    src.onended = function () {
+      try { src.disconnect(); bp.disconnect(); g.disconnect(); } catch (e) { /* ignore */ }
+    };
+
+    /* tumbukan batang ke tanah */
+    tone(95, 34, 0.55, t + 0.38, 0.32, 'sine');
+    noiseBurst(0.18, 320, 0.8, t + 0.38, 0.22, 'lowpass');
+  }
+
+  function sfxFeed() {
+    if (!audioOk()) return;
+    var t = audio.ctx.currentTime;
+    noiseBurst(0.16, 620, 0.9, t, 0.2, 'lowpass');
+  }
+
+  function sfxLevel() {
+    if (!audioOk()) return;
+    var t = audio.ctx.currentTime;
+    var notes = [523.25, 659.25, 783.99, 1046.5];
+    for (var i = 0; i < notes.length; i += 1) {
+      tone(notes[i], notes[i], 0.16, t + i * 0.085, 0.22, 'triangle');
+    }
+  }
+
+  function sfxHurt() {
+    if (!audioOk()) return;
+    var t = audio.ctx.currentTime;
+    tone(220, 120, 0.2, t, 0.18, 'square');
+  }
+
+  /* ---------------------------------------------------------------
      DOM
      --------------------------------------------------------------- */
 
@@ -80,8 +293,29 @@
     startBtn: document.getElementById('startBtn'),
     resumeBtn: document.getElementById('resumeBtn'),
     quitBtn: document.getElementById('quitBtn'),
-    againBtn: document.getElementById('againBtn')
+    againBtn: document.getElementById('againBtn'),
+    fireLvl: document.getElementById('valFireLvl'),
+    soundBtn: document.getElementById('soundBtn')
   };
+
+  function updateSoundBtn() {
+    if (!el.soundBtn) return;
+    el.soundBtn.setAttribute('aria-pressed', audio.muted ? 'false' : 'true');
+    el.soundBtn.setAttribute('aria-label', audio.muted ? 'Nyalakan suara' : 'Matikan suara');
+  }
+
+  function toggleSound() {
+    audioInit();
+    audio.muted = !audio.muted;
+    try { localStorage.setItem(AUDIO_KEY, audio.muted ? '1' : '0'); } catch (e) { /* ignore */ }
+    if (audio.ctx) {
+      if (audio.muted && audio.ctx.state === 'running') audio.ctx.suspend();
+      if (!audio.muted && audio.ctx.state === 'suspended') audio.ctx.resume();
+    }
+    updateSoundBtn();
+  }
+
+  if (el.soundBtn) el.soundBtn.addEventListener('click', toggleSound);
 
   /* ---------------------------------------------------------------
      Input
@@ -236,12 +470,15 @@
         hp: 100,
         wood: 0,
         maxWood: 12,
+        fireLevel: 1,
         facing: -Math.PI / 2,
+        dir: 'down',
+        swingPhase: 0,
         hitCd: 0,
         feedCd: 0,
         chopT: 0
       },
-      fire: { x: CX, y: CY, fuel: 80 },
+      fire: { x: CX, y: CY, fuel: 60 },
       cam: { x: 0, y: 0 },
       emberAcc: 0
     };
@@ -307,6 +544,20 @@
     var p = game.player;
     p.hp = Math.max(0, p.hp - amount);
     if (p.hp <= 0 && game.state === 'play') endGame(false);
+  }
+
+  function levelUpFire() {
+    var p = game.player;
+    if (p.fireLevel >= 5) return;
+
+    p.fireLevel += 1;
+    game.fire.fuel = 30;
+    p.maxWood = 12 * Math.pow(2, p.fireLevel - 1);
+
+    var mult = Math.pow(2, p.fireLevel - 1);
+    toast('Api Level ' + p.fireLevel + ' — kayu ×' + mult, '');
+    burst(game.fire.x, game.fire.y - 10, 26, '#ffd27a', 150);
+    sfxLevel();
   }
 
   function nearestTree() {
@@ -425,6 +676,9 @@
       p.vx = (mx / len) * P_SPEED;
       p.vy = (my / len) * P_SPEED;
       p.facing = Math.atan2(p.vy, p.vx);
+      p.dir = Math.abs(mx) > Math.abs(my)
+        ? (mx > 0 ? 'right' : 'left')
+        : (my > 0 ? 'down' : 'up');
     } else {
       p.vx *= 0.8;
       p.vy *= 0.8;
@@ -439,6 +693,7 @@
     /* Interaksi */
     var wolf = nearestWolf();
     var nearFire = dist(p.x, p.y, g.fire.x, g.fire.y) < 98;
+    var woodMult = Math.pow(2, p.fireLevel - 1);
 
     if (keys.action) {
       if (wolf) {
@@ -446,6 +701,7 @@
           wolf.hp -= 26;
           wolf.hitFlash = 1;
           p.hitCd = 0.4;
+          p.swingPhase += 1.6;
           burst(wolf.x, wolf.y, 5, '#ff6b6b', 50);
         }
       } else if (nearFire && p.wood > 0) {
@@ -454,6 +710,7 @@
           g.fire.fuel = Math.min(100, g.fire.fuel + 10);
           p.feedCd = 0.2;
           burst(g.fire.x, g.fire.y - 6, 4, '#ffb86b', 45);
+          sfxFeed();
         }
       } else {
         var tree = nearestTree();
@@ -464,19 +721,22 @@
             p.chopT = 0;
           } else {
             p.chopT += dt;
+            p.swingPhase += dt * 10;
             tree.shake = 0.22;
 
             if (p.chopT >= 0.5) {
               p.chopT = 0;
               tree.chops -= 1;
-              p.wood += 1;
-              g.woodTotal += 1;
-              burst(tree.x, tree.y - 20 * tree.size, 4, '#c89b6a', 40);
+              p.wood += woodMult;
+              g.woodTotal += woodMult;
+              burst(tree.x, tree.y - 20 * tree.size, 4 * woodMult, '#c89b6a', 40);
+              sfxChop();
 
               if (tree.chops <= 0) {
                 tree.down = 1;
                 tree.respawn = 24;
                 burst(tree.x, tree.y - 12, 10, '#276143', 90);
+                sfxFall();
               }
             }
           }
@@ -486,6 +746,11 @@
       }
     } else {
       p.chopT = 0;
+    }
+
+    /* Api naik level saat mencapai 100% */
+    if (g.fire.fuel >= 100 && p.fireLevel < 5) {
+      levelUpFire();
     }
 
     /* Pohon */
@@ -503,7 +768,7 @@
     }
 
     /* Api */
-    var drain = (g.phase === 'night' ? 2.2 : 0.85) + g.night * 0.05;
+    var drain = ((g.phase === 'night' ? 2.2 : 0.85) + g.night * 0.05) * (1 + 0.4 * (p.fireLevel - 1));
     g.fire.fuel = Math.max(0, g.fire.fuel - drain * dt);
 
     /* Suhu */
@@ -552,8 +817,12 @@
         wo.atkCd -= dt;
         if (wo.atkCd <= 0) {
           wo.atkCd = 0.55;
-          if (toPlayer < 170) damagePlayer(6);
-          else g.fire.fuel = Math.max(0, g.fire.fuel - 2.2);
+          if (toPlayer < 170) {
+            damagePlayer(6);
+            sfxHurt();
+          } else {
+            g.fire.fuel = Math.max(0, g.fire.fuel - 2.2);
+          }
         }
       }
 
@@ -629,6 +898,7 @@
       el.barFuel.classList.toggle('low', fuelPct <= 25);
     }
     if (el.valFuel) el.valFuel.textContent = fuelPct + '%';
+    if (el.fireLvl) el.fireLvl.textContent = 'Lv' + p.fireLevel;
 
     if (el.barHp) {
       el.barHp.style.width = hpPct + '%';
@@ -717,7 +987,8 @@
     var f = game.fire;
     var t = game.t;
 
-    var glowR = 120 + f.fuel * 1.7;
+    var level = game.player.fireLevel;
+    var glowR = 120 + f.fuel * 1.7 + (level - 1) * 22;
     var grd = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, glowR);
     if (f.fuel > 0) {
       grd.addColorStop(0, 'rgba(255, 176, 96, 0.32)');
@@ -761,7 +1032,7 @@
       return;
     }
 
-    var scale = 0.55 + (f.fuel / 100) * 0.75;
+    var scale = (0.55 + (f.fuel / 100) * 0.75) * (1 + (level - 1) * 0.11);
     var flick = 1 + Math.sin(t * 9) * 0.06 + Math.sin(t * 21) * 0.04;
 
     ctx.save();
@@ -791,50 +1062,101 @@
     ctx.restore();
   }
 
+  function drawSprite(rows, x, y, scale, flip) {
+    for (var r = 0; r < rows.length; r += 1) {
+      var row = rows[r];
+      for (var c = 0; c < row.length; c += 1) {
+        var ch = row.charAt(c);
+        if (ch === '.') continue;
+        var color = PAL[ch];
+        if (!color) continue;
+        var col = flip ? (row.length - 1 - c) : c;
+        ctx.fillStyle = color;
+        ctx.fillRect(x + col * scale, y + r * scale, scale, scale);
+      }
+    }
+  }
+
+  function drawAxe(p, baseX, baseY, scale) {
+    var angle;
+
+    if (p.dir === 'right') angle = 0.5;
+    else if (p.dir === 'left') angle = Math.PI - 0.5;
+    else if (p.dir === 'up') angle = -0.9;
+    else angle = 1.15;
+
+    if (p.chopT > 0) angle += Math.sin(p.swingPhase) * 0.65;
+
+    var handX = baseX;
+    var handY = baseY;
+
+    if (p.dir === 'right') handX += SPR_W * scale * 0.62;
+    else if (p.dir === 'left') handX += SPR_W * scale * 0.38;
+    else handX += SPR_W * scale * 0.72;
+
+    handY += SPR_H * scale * 0.5;
+
+    var s = scale * 0.85;
+
+    ctx.save();
+    ctx.translate(handX, handY);
+    ctx.rotate(angle);
+
+    /* gagang kayu */
+    ctx.fillStyle = '#8a5a2b';
+    ctx.fillRect(0, 0, Math.max(2, s * 0.4), s * 4.4);
+
+    /* mata kapak */
+    ctx.fillStyle = '#c3ccd6';
+    ctx.fillRect(-s * 0.9, 0, s * 2.1, s * 1.5);
+    ctx.fillStyle = '#8f9aa6';
+    ctx.fillRect(-s * 0.9, s * 1.1, s * 2.1, s * 0.4);
+
+    ctx.restore();
+  }
+
   function drawPlayer() {
     var p = game.player;
+    var moving = Math.abs(p.vx) + Math.abs(p.vy) > 20;
+    var bob = Math.sin(game.t * (moving ? 11 : 5)) * (moving ? 1.2 : 0.5);
+    var scale = SPR_SCALE;
 
+    var px = p.x - (SPR_W * scale) / 2;
+    var py = p.y - SPR_H * scale + bob;
+
+    /* bayangan */
     ctx.beginPath();
-    ctx.ellipse(p.x, p.y + 11, 13, 5.5, 0, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+    ctx.ellipse(p.x, p.y + 3, 12, 4.5, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.42)';
     ctx.fill();
 
-    /* Tubuh */
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 13, 0, Math.PI * 2);
-    ctx.fillStyle = '#f0dfc6';
-    ctx.fill();
+    /* kapak di belakang tubuh saat menghadap atas */
+    if (p.dir === 'up') drawAxe(p, px, py, scale);
 
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 13, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(120, 72, 30, 0.55)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
+    var rows = p.dir === 'up'
+      ? SPRITE.up
+      : (p.dir === 'left' || p.dir === 'right' ? SPRITE.side : SPRITE.down);
 
-    /* Arah hadap */
-    var fx = p.x + Math.cos(p.facing) * 7;
-    var fy = p.y + Math.sin(p.facing) * 7;
-    ctx.beginPath();
-    ctx.arc(fx, fy, 4, 0, Math.PI * 2);
-    ctx.fillStyle = '#3a2415';
-    ctx.fill();
+    drawSprite(rows, px, py, scale, p.dir === 'left');
 
-    /* Indikator kayu yang dibawa */
+    if (p.dir !== 'up') drawAxe(p, px, py, scale);
+
+    /* indikator kayu yang dibawa */
     if (p.wood > 0) {
-      var shown = Math.min(p.wood, 6);
+      var shown = Math.min(p.wood, 8);
       for (var i = 0; i < shown; i += 1) {
         ctx.fillStyle = '#a9743f';
-        ctx.fillRect(p.x - 10 + (i % 3) * 7, p.y - 22 - Math.floor(i / 3) * 5, 5, 3);
+        ctx.fillRect(p.x - 10 + (i % 4) * 6, p.y - SPR_H * scale - 8 - Math.floor(i / 4) * 4, 4, 2.5);
       }
     }
 
-    /* Progress memotong */
+    /* progress memotong */
     if (p.chopT > 0) {
-      var w = 26;
+      var w = 30;
       ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
-      ctx.fillRect(p.x - w / 2, p.y - 40, w, 4);
+      ctx.fillRect(p.x - w / 2, p.y - SPR_H * scale - 16, w, 4);
       ctx.fillStyle = '#ffb86b';
-      ctx.fillRect(p.x - w / 2, p.y - 40, w * Math.min(1, p.chopT / 0.5), 4);
+      ctx.fillRect(p.x - w / 2, p.y - SPR_H * scale - 16, w * Math.min(1, p.chopT / 0.5), 4);
     }
   }
 
@@ -960,6 +1282,10 @@
      --------------------------------------------------------------- */
 
   function begin() {
+    audioInit();
+    if (audio.ctx && audio.ctx.state === 'suspended' && !audio.muted) audio.ctx.resume();
+    updateSoundBtn();
+
     reset();
     game.state = 'play';
     if (el.start) el.start.classList.remove('show');

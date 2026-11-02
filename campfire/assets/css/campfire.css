@@ -368,12 +368,60 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- Hero visual ---------- */
 
 .visual-card {
+  position: relative;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
   background: linear-gradient(165deg, var(--card), var(--bg-soft));
   box-shadow: var(--shadow);
   overflow: hidden;
 }
+
+/* ---------- Suara api ---------- */
+
+.sound-btn {
+  position: absolute;
+  top: 52px;
+  left: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 176, 108, 0.38);
+  border-radius: 999px;
+  background: rgba(10, 7, 5, 0.62);
+  color: var(--ember);
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.sound-btn:hover { transform: translateY(-1px); border-color: var(--ember); }
+.sound-btn:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+.sound-btn svg { width: 15px; height: 15px; flex: none; }
+
+/* dorongan halus agar tombol suara terlihat (berhenti setelah 3 putaran) */
+.sound-btn[aria-pressed="false"] { animation: soundNudge 2.6s ease-in-out 3; }
+
+@keyframes soundNudge {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 184, 107, 0); }
+  50% { box-shadow: 0 0 0 7px rgba(255, 184, 107, 0.14); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sound-btn[aria-pressed="false"] { animation: none; }
+}
+
+.sound-btn .ico-on { display: none; }
+.sound-btn[aria-pressed="true"] { background: rgba(255, 138, 61, 0.24); color: #ffd9a8; border-color: rgba(255, 184, 107, 0.7); }
+.sound-btn[aria-pressed="true"] .ico-on { display: block; }
+.sound-btn[aria-pressed="true"] .ico-off { display: none; }
+.sound-btn[aria-pressed="true"] .sound-label { color: #ffe6c2; }
 
 .visual-head {
   display: flex;
@@ -957,4 +1005,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .hud-item { padding: 11px 12px; }
   .hud-item strong { font-size: 0.88rem; }
   .nav-cta { display: none; }
+  .sound-btn { top: 48px; left: 10px; padding: 7px 9px; }
+  .sound-label { display: none; }
 }

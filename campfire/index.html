@@ -108,14 +108,25 @@
           </ul>
         </div>
 
-        <div class="hero-visual reveal" aria-hidden="true">
+        <div class="hero-visual reveal">
           <div class="visual-card">
             <div class="visual-head">
               <span class="traffic"></span><span class="traffic"></span><span class="traffic"></span>
               <span class="visual-title">campfire.exe</span>
               <span class="live-badge">prototype</span>
             </div>
-            <div class="night-scene">
+            <button class="sound-btn" id="fireSound" type="button" aria-pressed="false" aria-label="Nyalakan suara api unggun">
+              <svg class="ico-off" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="M16 9.5l4 5M20 9.5l-4 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+              <svg class="ico-on" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 9.5h3.2L12 5.6v12.8L7.2 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="M15.6 8.6a4.8 4.8 0 0 1 0 6.8M18.4 6a8.6 8.6 0 0 1 0 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+              <span class="sound-label">Suara api</span>
+            </button>
+            <div class="night-scene" aria-hidden="true">
               <div class="moon"></div>
               <div class="stars"></div>
               <div class="tree tree-a"></div>
@@ -130,7 +141,7 @@
               </div>
               <div class="fire-glow"></div>
             </div>
-            <div class="hud">
+            <div class="hud" aria-hidden="true">
               <div class="hud-item"><span class="hud-label">Malam</span><strong>07 / 99</strong></div>
               <div class="hud-item"><span class="hud-label">Kayu</span><strong>34</strong></div>
               <div class="hud-item"><span class="hud-label">Api</span><strong class="warn">62%</strong></div>
@@ -170,8 +181,8 @@
             <p>Api punya dua angka: panas dan bahan bakar. Keduanya turun terus. Kalau bahan bakar habis, dingin mulai masuk.</p>
             <ul class="loop-list">
               <li>Isi ulang sebelum padam</li>
-              <li>Atur besar-kecil nyala</li>
-              <li>Bangun penahan angin</li>
+              <li>Naik level tiap api penuh 100%</li>
+              <li>Tiap level, kayu ×2 (maks Lv5)</li>
             </ul>
           </article>
 
