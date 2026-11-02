@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campfire — Survival Game on Base</title>
+  <meta name="description" content="Campfire — game survival bertahan malam. Kumpulkan kayu, jaga api unggun, jangan sampai padam. Segera hadir di campfire.falusa.web.id.">
+  <meta name="author" content="falusa">
+  <meta name="theme-color" content="#0b0705">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="canonical" href="https://campfire.falusa.web.id/">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/campfire.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Campfire">
+  <meta property="og:title" content="Campfire — Survival Game on Base">
+  <meta property="og:description" content="Kumpulkan kayu. Jaga api. Bertahan sampai pagi. Game survival web yang segera hadir.">
+  <meta property="og:url" content="https://campfire.falusa.web.id/">
+  <meta name="twitter:card" content="summary">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Campfire",
+    "url": "https://campfire.falusa.web.id",
+    "genre": ["Survival", "Casual"],
+    "gamePlatform": ["Web browser", "Android"],
+    "applicationCategory": "Game",
+    "operatingSystem": "Web, Android",
+    "publisher": { "@type": "Organization", "name": "falusa", "url": "https://falusa.web.id" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Campfire — beranda">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="10" fill="url(#cfGrad)"/>
+            <path d="M16 25c-3.6 0-6.5-2.6-6.5-5.9 0-2.4 1.4-4 2.6-5.4.9-1 1.7-1.9 1.7-3.1 0-.6-.2-1.1-.5-1.6 2.6.7 4.4 3 4.4 5.4 0 .9-.2 1.6-.5 2.3.7-.3 1.2-.9 1.5-1.6.9 1.2 1.4 2.6 1.4 4C23 22.4 19.6 25 16 25Z" fill="#fff"/>
+            <path d="M16 22.4c-1.6 0-2.9-1.2-2.9-2.7 0-1.5 1.2-2.3 1.9-3.3.4-.6.7-1.2.7-1.9 1.4.8 2.2 2.3 2.2 3.7 0 2.3-1.5 4.2-1.9 4.2Z" fill="#FFB86B"/>
+            <defs>
+              <linearGradient id="cfGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#FF8A3D"/><stop offset="1" stop-color="#B91C1C"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="brand-text">campfire</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+        <a href="#game">Game</a>
+        <a href="play.html">Mainkan</a>
+        <a href="#token">Token</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Ganti tema" title="Ganti tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3c.34 0 .67.02 1 .05a7 7 0 0 0 8.74 8.74c.03.33.05.66.05 1Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn-sm btn-primary nav-cta" href="play.html">Mainkan</a>
+        <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="glow glow-a"></div>
+        <div class="glow glow-b"></div>
+        <div class="embers" id="embers"></div>
+        <div class="grid-fade"></div>
+      </div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="pulse-dot"></span> Segera hadir · Base</p>
+          <h1>Kumpulkan kayu.<br><span class="gradient-text">Jaga api.</span><br>Bertahan sampai pagi.</h1>
+          <p class="lead">
+            <strong>Campfire</strong> adalah game survival web: setiap malam makin dingin,
+            setiap malam makin gelap. Satu-satunya yang menjagamu tetap hidup adalah api
+            unggun — dan kayu yang kamu kumpulkan sendiri.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="play.html">
+              Mainkan Prototipe
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#game">Lihat Konsep</a>
+          </div>
+          <ul class="hero-facts" aria-label="Ringkasan">
+            <li><strong>99</strong><span>malam untuk ditaklukkan</span></li>
+            <li><strong>0</strong><span>biaya untuk mulai main</span></li>
+            <li><strong>Base</strong><span>jaringan token</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="visual-card">
+            <div class="visual-head">
+              <span class="traffic"></span><span class="traffic"></span><span class="traffic"></span>
+              <span class="visual-title">campfire.exe</span>
+              <span class="live-badge">prototype</span>
+            </div>
+            <div class="night-scene">
+              <div class="moon"></div>
+              <div class="stars"></div>
+              <div class="tree tree-a"></div>
+              <div class="tree tree-b"></div>
+              <div class="tree tree-c"></div>
+              <div class="fire">
+                <span class="flame f1"></span>
+                <span class="flame f2"></span>
+                <span class="flame f3"></span>
+                <span class="log log-a"></span>
+                <span class="log log-b"></span>
+              </div>
+              <div class="fire-glow"></div>
+            </div>
+            <div class="hud">
+              <div class="hud-item"><span class="hud-label">Malam</span><strong>07 / 99</strong></div>
+              <div class="hud-item"><span class="hud-label">Kayu</span><strong>34</strong></div>
+              <div class="hud-item"><span class="hud-label">Api</span><strong class="warn">62%</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section class="section" id="game">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Core loop</p>
+          <h2>Tiga hal yang harus kamu lakukan. Selamanya.</h2>
+          <p class="section-sub">
+            Tidak ada tutorial panjang. Tidak ada menu rumit. Kamu keluar, menebang pohon,
+            membawa pulang kayu, dan berharap apinya cukup sampai matahari terbit.
+          </p>
+        </div>
+
+        <div class="loop-grid">
+          <article class="loop-card reveal">
+            <span class="loop-num">01</span>
+            <h3>Kumpulkan</h3>
+            <p>Hutan memberi kayu, batu, dan resin. Setiap perjalanan punya risiko: makin jauh dari api, makin gelap jalannya.</p>
+            <ul class="loop-list">
+              <li>Kayu bakar</li>
+              <li>Batu &amp; flint</li>
+              <li>Resin untuk api panjang</li>
+            </ul>
+          </article>
+
+          <article class="loop-card reveal">
+            <span class="loop-num">02</span>
+            <h3>Jaga Api</h3>
+            <p>Api punya dua angka: panas dan bahan bakar. Keduanya turun terus. Kalau bahan bakar habis, dingin mulai masuk.</p>
+            <ul class="loop-list">
+              <li>Isi ulang sebelum padam</li>
+              <li>Atur besar-kecil nyala</li>
+              <li>Bangun penahan angin</li>
+            </ul>
+          </article>
+
+          <article class="loop-card reveal">
+            <span class="loop-num">03</span>
+            <h3>Bertahan</h3>
+            <p>Malam ke-10 berbeda dari malam ke-1. Makhluk datang lebih cepat, suhu turun lebih dalam, dan kayu makin jauh.</p>
+            <ul class="loop-list">
+              <li>Upgrade kapak &amp; tempat berlindung</li>
+              <li>Simpan stok untuk malam badai</li>
+              <li>Kejar 99 malam</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOKEN -->
+    <section class="section section-alt" id="token">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Token</p>
+          <h2>$CAMPFIRE — untuk kosmetik, bukan untuk menang.</h2>
+          <p class="section-sub">
+            Game ini bisa dimainkan <strong>gratis sepenuhnya</strong>. Token hanya dipakai
+            untuk hal yang tidak mengubah keseimbangan permainan: tampilan, kapasitas, dan
+            konten musiman.
+          </p>
+        </div>
+
+        <div class="token-grid">
+          <div class="token-card reveal">
+            <h3>Yang bisa dibeli</h3>
+            <ul class="check-list">
+              <li>Skin kapak &amp; efek api</li>
+              <li>Slot inventory tambahan</li>
+              <li>Season pass &amp; misi musiman</li>
+              <li>Emote &amp; nama berwarna</li>
+            </ul>
+          </div>
+
+          <div class="token-card reveal">
+            <h3>Yang tidak dijual</h3>
+            <ul class="cross-list">
+              <li>Damage &amp; HP ekstra</li>
+              <li>Kecepatan permanen</li>
+              <li>Kekebalan dari serangan</li>
+              <li>Apa pun yang membuatmu menang</li>
+            </ul>
+          </div>
+
+          <div class="token-card token-card-wide reveal">
+            <h3>Status</h3>
+            <p class="token-note">
+              Token belum diterbitkan. Kontrak akan dibuat di jaringan <strong>Base</strong>
+              dengan supply tetap, tanpa fungsi mint, dan tanpa owner — sehingga tidak ada
+              yang bisa mencetak token baru atau mengubah aturan setelah peluncuran.
+            </p>
+            <div class="token-badges">
+              <span class="badge">Fixed supply</span>
+              <span class="badge">No mint</span>
+              <span class="badge">No owner</span>
+              <span class="badge">Verified</span>
+            </div>
+            <p class="token-warn">
+              Alamat kontrak resmi akan dipublikasikan di halaman ini dan di kanal resmi
+              saat peluncuran. Siapa pun yang mengirim alamat lain sebelum itu bukan kami.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="section" id="roadmap">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Roadmap</p>
+          <h2>Dibangun bertahap, tanpa janji berlebihan.</h2>
+        </div>
+
+        <ol class="timeline">
+          <li class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+            <div class="timeline-body">
+              <span class="timeline-tag">Sekarang</span>
+              <h3>Halaman &amp; konsep</h3>
+              <p>Landing page, dokumentasi game, dan prototipe mekanik api unggun.</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+            <div class="timeline-body">
+              <span class="timeline-tag">Tahap 2</span>
+              <h3>Prototipe playable</h3>
+              <p>Game survival single-player di browser. Mata uang internal: kayu. Belum ada wallet.</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+            <div class="timeline-body">
+              <span class="timeline-tag">Tahap 3</span>
+              <h3>Akun &amp; inventory</h3>
+              <p>Simpan progres di server. Main gratis tanpa wallet tetap bisa.</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+            <div class="timeline-body">
+              <span class="timeline-tag">Tahap 4</span>
+              <h3>Token &amp; shop</h3>
+              <p>Token $CAMPFIRE di Base, pool likuiditas, dan shop kosmetik dengan connect wallet.</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-dot"></span>
+            <div class="timeline-body">
+              <span class="timeline-tag">Nanti</span>
+              <h3>APK &amp; domain sendiri</h3>
+              <p>Rilis Android, lalu pindah ke <strong>campfire.co.id</strong>.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- NOTIFY -->
+    <section class="section section-alt" id="notify">
+      <div class="container notify-wrap">
+        <div class="notify-copy reveal">
+          <p class="eyebrow">Kabar peluncuran</p>
+          <h2>Jadi yang pertama tahu saat game bisa dimainkan.</h2>
+          <p class="section-sub">
+            Belum ada token, belum ada presale, belum ada yang perlu dibeli.
+            Tinggalkan kontak dan kami kabari saat prototipe siap.
+          </p>
+        </div>
+
+        <form class="notify-form reveal" id="notifyForm" novalidate>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" id="notifyEmail" placeholder="nama@email.com" autocomplete="email" required>
+          </label>
+          <button class="btn btn-primary" type="submit">
+            Kirim
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-msg" id="notifyMsg" role="status" aria-live="polite"></p>
+          <p class="form-note">
+            Kami tidak mengirim spam dan tidak menjual data. Formulir ini belum terhubung
+            ke server — akan aktif saat backend siap.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Pertanyaan yang paling sering muncul.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>Apakah harus beli token untuk main?</summary>
+            <p>Tidak. Game bisa dimainkan gratis sepenuhnya. Token hanya untuk kosmetik dan kenyamanan.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Apakah ini game Play-to-Earn?</summary>
+            <p>Bukan. Tidak ada janji penghasilan. Token bukan investasi dan tidak menjanjikan keuntungan apa pun.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Kapan token dirilis?</summary>
+            <p>Setelah game bisa dimainkan. Token tanpa game hanya akan jadi token kosong, dan kami tidak mau itu.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Kenapa pakai Base?</summary>
+            <p>Biaya transaksi sangat murah dan jaringan terhubung dengan ekosistem Ethereum, sehingga pembelian kosmetik tidak membebani pemain.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Apakah tersedia di Android?</summary>
+            <p>Rencananya ya, setelah versi web stabil. Untuk sekarang fokus ke browser dulu.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Bagaimana kalau saya menemukan token bernama sama?</summary>
+            <p>Abaikan. Hanya alamat kontrak yang dipublikasikan di halaman ini yang resmi.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <span class="brand-text">campfire</span>
+        <p>Game survival web. Bagian dari <a href="https://falusa.web.id">falusa.web.id</a>.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#game">Game</a>
+        <a href="#token">Token</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <p class="footer-copy">© <span id="year">2026</span> Campfire — semua hak dilindungi.</p>
+      <p class="footer-legal">
+        $CAMPFIRE adalah token utilitas untuk kosmetik dalam game. Bukan instrumen investasi,
+        bukan sekuritas, dan tidak menjanjikan keuntungan. Harga aset kripto sangat volatil
+        dan dapat menjadi nol.
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/campfire.js" defer></script>
+</body>
+</html>

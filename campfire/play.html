@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Mainkan Campfire — Prototipe</title>
+  <meta name="description" content="Prototipe Campfire: kumpulkan kayu, jaga api unggun, bertahan dari serigala sampai pagi. Bisa dimainkan langsung di browser.">
+  <meta name="theme-color" content="#0b0705">
+  <link rel="canonical" href="https://campfire.falusa.web.id/play.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/play.css">
+</head>
+<body>
+  <div class="game-shell">
+    <canvas id="game" aria-label="Area bermain Campfire" role="img"></canvas>
+
+    <!-- HUD -->
+    <div class="hud-top">
+      <a class="hud-back" href="index.html" aria-label="Kembali ke halaman utama">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Keluar</span>
+      </a>
+
+      <div class="hud-chip">
+        <span class="hud-k">Malam</span>
+        <strong id="hudNight">1</strong>
+        <span class="hud-of">/ 10</span>
+      </div>
+
+      <div class="hud-chip" id="hudPhaseChip">
+        <span class="hud-k">Waktu</span>
+        <strong id="hudPhase">Siang</strong>
+        <span class="hud-timer" id="hudTimer">26s</span>
+      </div>
+
+      <div class="hud-chip hud-best">
+        <span class="hud-k">Terbaik</span>
+        <strong id="hudBest">1</strong>
+      </div>
+    </div>
+
+    <p class="hud-hint" id="hudHint">WASD / panah untuk bergerak · Spasi untuk memotong, memberi kayu, dan menyerang</p>
+
+    <!-- Bars -->
+    <div class="hud-bars">
+      <div class="bar-row">
+        <span class="bar-label">Api</span>
+        <div class="bar"><i id="barFuel" class="bar-fill bar-fuel" style="width:72%"></i></div>
+        <span class="bar-val" id="valFuel">72%</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Nyawa</span>
+        <div class="bar"><i id="barHp" class="bar-fill bar-hp" style="width:100%"></i></div>
+        <span class="bar-val" id="valHp">100</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Kayu</span>
+        <div class="bar"><i id="barWood" class="bar-fill bar-wood" style="width:0%"></i></div>
+        <span class="bar-val" id="valWood">0 / 12</span>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Touch controls -->
+    <div class="touch" id="touch">
+      <div class="dpad">
+        <button class="tbtn up" data-key="up" aria-label="Atas">▲</button>
+        <button class="tbtn left" data-key="left" aria-label="Kiri">◀</button>
+        <button class="tbtn right" data-key="right" aria-label="Kanan">▶</button>
+        <button class="tbtn down" data-key="down" aria-label="Bawah">▼</button>
+      </div>
+      <button class="tbtn action" data-key="action" aria-label="Aksi">AKSI</button>
+    </div>
+
+    <!-- Start overlay -->
+    <div class="overlay show" id="startOverlay">
+      <div class="panel">
+        <p class="panel-eyebrow">Prototipe · v0.1</p>
+        <h1>Campfire</h1>
+        <p class="panel-lead">
+          Kumpulkan kayu, jaga api tetap menyala, dan bertahan sampai pagi.
+          Setiap malam serigala datang lebih banyak.
+        </p>
+        <ul class="panel-list">
+          <li><b>Gerak</b> WASD atau tombol panah</li>
+          <li><b>Aksi</b> Spasi — potong pohon, beri kayu, serang serigala</li>
+          <li><b>Target</b> bertahan 10 malam</li>
+        </ul>
+        <button class="panel-btn" id="startBtn" type="button">Mulai Bermain</button>
+        <p class="panel-note">
+          Prototipe ini belum memakai token, wallet, atau server. Semua progres
+          hanya tersimpan di browser.
+        </p>
+      </div>
+    </div>
+
+    <!-- Pause overlay -->
+    <div class="overlay" id="pauseOverlay">
+      <div class="panel">
+        <h2>Jeda</h2>
+        <p class="panel-lead">Api terus menyala selama kamu menjeda? Tidak. Tenang saja.</p>
+        <button class="panel-btn" id="resumeBtn" type="button">Lanjut</button>
+        <button class="panel-btn ghost" id="quitBtn" type="button">Keluar</button>
+      </div>
+    </div>
+
+    <!-- End overlay -->
+    <div class="overlay" id="endOverlay">
+      <div class="panel">
+        <p class="panel-eyebrow" id="endEyebrow">Selamat</p>
+        <h2 id="endTitle">Kamu bertahan</h2>
+        <p class="panel-lead" id="endText"></p>
+        <ul class="panel-stats">
+          <li><span>Malam tercapai</span><b id="endNights">1</b></li>
+          <li><span>Kayu terkumpul</span><b id="endWood">0</b></li>
+          <li><span>Rekor</span><b id="endBest">1</b></li>
+        </ul>
+        <button class="panel-btn" id="againBtn" type="button">Main Lagi</button>
+        <a class="panel-btn ghost" href="index.html">Kembali ke Beranda</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/play.js" defer></script>
+</body>
+</html>

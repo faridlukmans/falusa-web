@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://campfire.falusa.web.id/sitemap.xml

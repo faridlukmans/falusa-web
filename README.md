@@ -8,6 +8,18 @@ Company profile / landing page statis. Tanpa build step, tanpa dependency, tanpa
 site/
 ├─ index.html
 ├─ bms.html
+├─ campfire/           # subdomain campfire.falusa.web.id (document root: public_html/campfire)
+│  ├─ index.html
+│  ├─ play.html        # prototipe game survival (canvas 2D)
+│  ├─ robots.txt
+│  ├─ sitemap.xml
+│  ├─ .htaccess        # no indexes, HTTPS redirect, security headers
+│  └─ assets/
+│     ├─ css/campfire.css
+│     ├─ css/play.css
+│     ├─ js/campfire.js
+│     ├─ js/play.js
+│     └─ img/favicon.svg
 ├─ assets/
 │  ├─ css/style.css
 │  ├─ css/bms.css
@@ -19,6 +31,19 @@ site/
 ├─ .gitignore
 └─ README.md
 ```
+
+## Campfire (subdomain)
+
+`campfire/` di-deploy ke `public_html/campfire` oleh `.cpanel.yml`, sehingga tersaji di
+`https://campfire.falusa.web.id`.
+
+- `index.html` — halaman produk: konsep game, penjelasan token, roadmap, FAQ.
+- `play.html` — prototipe playable: canvas 2D, tanpa library, tanpa server.
+  Kontrol: WASD/panah, Spasi untuk memotong/beri kayu/serang; tombol sentuh muncul di mobile.
+  Rekor malam disimpan di `localStorage` (`campfire-best`).
+- Belum ada wallet, token, maupun backend. Semua progres hanya di browser.
+
+Pratinjau lokal: `http://localhost:8080/campfire/` dan `.../campfire/play.html`.
 
 ## Pratinjau lokal
 
@@ -46,7 +71,12 @@ Remote: `https://github.com/faridlukmans/falusa-web.git`
 4. Klik **Create**.
 5. Buka **Manage** → tab **Pull or Deploy** → **Update from Remote**, lalu **Deploy HEAD Commit**.
 
-`.cpanel.yml` akan menyalin `index.html` dan `assets/` ke `public_html`.
+`.cpanel.yml` akan menyalin `index.html`, `bms.html`, `assets/`, dan folder `campfire/`
+ke `public_html`.
+
+> Subdomain `campfire.falusa.web.id` harus dibuat lebih dulu di cPanel dengan document
+> root `public_html/campfire`. Tanpa itu, folder tetap ter-deploy tetapi hanya bisa
+> diakses lewat `https://falusa.web.id/campfire/`.
 
 > Jika deploy gagal karena path tidak terbaca, ganti baris pertama `.cpanel.yml` menjadi:
 > `export DEPLOYPATH="/home/<USER_CPANEL>/public_html"`, commit, push, lalu pull + deploy lagi.

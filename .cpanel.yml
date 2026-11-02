@@ -6,3 +6,6 @@ deployment:
     - /bin/cp -f bms.html "$DEPLOYPATH/bms.html"
     - /bin/mkdir -p "$DEPLOYPATH/assets"
     - /bin/cp -Rf assets/. "$DEPLOYPATH/assets/"
+    # subdomain campfire.falusa.web.id (document root: public_html/campfire)
+    - /bin/mkdir -p "$DEPLOYPATH/campfire"
+    - /bin/cp -Rf campfire/. "$DEPLOYPATH/campfire/"
